@@ -9,7 +9,7 @@
         android:id="@+id/timer_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="timer"
+        android:text="routine"
         android:textSize="40sp"/>
 
 </LinearLayout>

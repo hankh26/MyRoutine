@@ -10,15 +10,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import java.util.zip.Inflater;
-
-public class TimerFragment extends Fragment {
+public class RoutineFragment extends Fragment {
     TextView tv;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v =inflater.inflate(R.layout.fragment_timer,container,false);
+        View v =inflater.inflate(R.layout.fragment_routine,container,false);
         tv=v.findViewById(R.id.timer_tv);
 
         return v;

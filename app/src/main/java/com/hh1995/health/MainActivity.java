@@ -6,6 +6,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
@@ -27,6 +28,10 @@ public class MainActivity extends AppCompatActivity {
     FrameLayout frameLayout;
 
     TimerFragment timerFragment;
+    RoutineFragment routineFragment;
+    YoutubeFragment youtubeFragment;
+
+    FragmentTransaction transaction;
 
 
     @Override
@@ -53,18 +58,32 @@ public class MainActivity extends AppCompatActivity {
 
         frameLayout = findViewById(R.id.container);
         timerFragment = new TimerFragment();
+        routineFragment= new RoutineFragment();
+        youtubeFragment= new YoutubeFragment();
+
+
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.botnav);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.timer:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, timerFragment).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, timerFragment).addToBackStack(null).commit();
 
                         return true;
-                }
+
+                    case R.id.routine:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, routineFragment).addToBackStack(null).commit();
+                        return true;
+
+                    case R.id.youSearch:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, youtubeFragment).addToBackStack(null).commit();
+                        return true;
+
+                };
                     return false;
             }
         });
