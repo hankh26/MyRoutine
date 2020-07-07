@@ -8,7 +8,8 @@
     tools:context=".MainActivity">
 <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -63,14 +64,27 @@
             android:layout_height="?attr/actionBarSize"
             android:layout_alignParentBottom="true"
             android:paddingBottom="8dp"
+            app:labelVisibilityMode="labeled"
             app:menu="@menu/botnav"/>
     </RelativeLayout>
     </RelativeLayout>
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
     <FrameLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="606dp"/>
+        android:layout_height="match_parent"
+        android:layout_weight="30"/>
+    <TextView
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"/>
+
+</LinearLayout>
+
+
 
     </RelativeLayout>
 

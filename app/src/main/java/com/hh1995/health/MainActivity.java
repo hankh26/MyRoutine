@@ -6,11 +6,14 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationMenu;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -26,7 +29,10 @@ public class MainActivity extends AppCompatActivity {
 
     FrameLayout frameLayout;
 
-    TimerFragment timerFragment;
+
+    FragmentTransaction transaction;
+
+    String weigh;
 
 
     @Override
@@ -52,23 +58,48 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(pager);
 
         frameLayout = findViewById(R.id.container);
-        timerFragment = new TimerFragment();
+
+
+        T1Fragment t1Fragment;
+
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.botnav);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.timer:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, timerFragment).commit();
-
+                        //getSupportFragmentManager().beginTransaction().replace(R.id.container, timerFragment).addToBackStack(null).commit();
+                        Intent intent=new Intent(MainActivity.this,TimerActivity.class);
+                        startActivity(intent);
                         return true;
-                }
+
+                    case R.id.routine:
+                       // getSupportFragmentManager().beginTransaction().replace(R.id.container, routineFragment).addToBackStack(null).commit();
+                        Intent intent2=new Intent(MainActivity.this,RoutineActivity.class);
+                        startActivity(intent2);
+                        return true;
+
+                    case R.id.youSearch:
+                        //getSupportFragmentManager().beginTransaction().replace(R.id.container, youtubeFragment).addToBackStack(null).commit();
+
+
+                };
                     return false;
             }
         });
 
+        //========================
+        t1Fragment=new T1Fragment();
+
+        Intent intent= getIntent();
+        String weigh=intent.getStringExtra("weigh");
+        Bundle bundle=new Bundle();
+        bundle.putString("weigh",weigh);
+        t1Fragment.setArguments(bundle);
+        Toast.makeText(this, weigh, Toast.LENGTH_SHORT).show();
 
     }
 
