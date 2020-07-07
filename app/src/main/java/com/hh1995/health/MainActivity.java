@@ -29,9 +29,6 @@ public class MainActivity extends AppCompatActivity {
 
     FrameLayout frameLayout;
 
-    TimerFragment timerFragment;
-    RoutineFragment routineFragment;
-    YoutubeFragment youtubeFragment;
 
     FragmentTransaction transaction;
 
@@ -61,9 +58,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(pager);
 
         frameLayout = findViewById(R.id.container);
-        timerFragment = new TimerFragment();
-        routineFragment= new RoutineFragment();
-        youtubeFragment= new YoutubeFragment();
+
 
         T1Fragment t1Fragment;
 
@@ -76,17 +71,20 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.timer:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, timerFragment).addToBackStack(null).commit();
-
+                        //getSupportFragmentManager().beginTransaction().replace(R.id.container, timerFragment).addToBackStack(null).commit();
+                        Intent intent=new Intent(MainActivity.this,TimerActivity.class);
+                        startActivity(intent);
                         return true;
 
                     case R.id.routine:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, routineFragment).addToBackStack(null).commit();
+                       // getSupportFragmentManager().beginTransaction().replace(R.id.container, routineFragment).addToBackStack(null).commit();
+                        Intent intent2=new Intent(MainActivity.this,RoutineActivity.class);
+                        startActivity(intent2);
                         return true;
 
                     case R.id.youSearch:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, youtubeFragment).addToBackStack(null).commit();
-                        return true;
+                        //getSupportFragmentManager().beginTransaction().replace(R.id.container, youtubeFragment).addToBackStack(null).commit();
+
 
                 };
                     return false;
