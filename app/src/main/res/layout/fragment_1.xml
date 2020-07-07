@@ -57,23 +57,24 @@
                     android:id="@+id/weigh"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="체중"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="#FF000000"
-                    android:gravity="center_horizontal"
+                    android:layout_below="@id/date"
                     android:layout_marginTop="40dp"
-                    android:layout_below="@id/date"/>
+                    android:gravity="center_horizontal"
+                    android:text="체중"
+                    android:textColor="#FF000000"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/fat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="체지방률"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="#FF000000"
+                    android:layout_below="@id/weigh"
                     android:layout_marginTop="4dp"
-                    android:layout_below="@id/weigh"/>
+                    android:text="체지방률"
+                    android:textColor="#FF000000"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
                 <TextView
                     android:id="@+id/muscle"
                     android:layout_width="wrap_content"

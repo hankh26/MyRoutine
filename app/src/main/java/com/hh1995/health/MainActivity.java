@@ -9,9 +9,11 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationMenu;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -32,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     YoutubeFragment youtubeFragment;
 
     FragmentTransaction transaction;
+
+    String weigh;
 
 
     @Override
@@ -61,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         routineFragment= new RoutineFragment();
         youtubeFragment= new YoutubeFragment();
 
+        T1Fragment t1Fragment;
 
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.botnav);
@@ -88,6 +93,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //========================
+        t1Fragment=new T1Fragment();
+
+        Intent intent= getIntent();
+        String weigh=intent.getStringExtra("weigh");
+        Bundle bundle=new Bundle();
+        bundle.putString("weigh",weigh);
+        t1Fragment.setArguments(bundle);
+        Toast.makeText(this, weigh, Toast.LENGTH_SHORT).show();
 
     }
 

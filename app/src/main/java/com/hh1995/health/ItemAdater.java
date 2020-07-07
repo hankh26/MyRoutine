@@ -1,6 +1,9 @@
 package com.hh1995.health;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +20,9 @@ import java.util.ArrayList;
 public class ItemAdater extends RecyclerView.Adapter {
     ArrayList<Item> items;
     Context context;
+
+    String Bweigh="null";
+
 
     public ItemAdater(ArrayList<Item> items, Context context) {
         this.items = items;
@@ -42,12 +48,14 @@ public class ItemAdater extends RecyclerView.Adapter {
         vh.weight.setText(item.weigh);
         vh.fat.setText(item.fat);
         vh.muscle.setText(item.muscle);
-        vh.tvweight.setText(item.tvWeigh);
+        vh.tvweight.setText(Bweigh);
         vh.tvfat.setText(item.tvFat);
         vh.tvmuscle.setText(item.tvMuscle);
         Glide.with(context).load(item.img).into(vh.iv);
 
+
     }
+
 
     @Override
     public int getItemCount() {
@@ -76,6 +84,10 @@ public class ItemAdater extends RecyclerView.Adapter {
             tvweight=itemView.findViewById(R.id.tv_weigh);
             tvfat=itemView.findViewById(R.id.tv_fat);
             tvmuscle=itemView.findViewById(R.id.tv_muscle);
+
+
+
+
         }
     }
 

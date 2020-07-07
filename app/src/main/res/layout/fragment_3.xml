@@ -1,15 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp">
 
     <TextView
+        android:id="@+id/myGal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="t1"
-        android:textSize="60sp"/>
+        android:text="나의 갤러리"
+        android:textSize="32sp"
+        android:textColor="#FF000000"/>
+    <Button
+        android:id="@+id/imgBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="8dp"
+        android:text="불러오기"/>
 
-</LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_below="@id/myGal"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="horizontal" />
+
+</RelativeLayout>
