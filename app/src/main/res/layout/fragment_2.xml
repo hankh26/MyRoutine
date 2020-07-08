@@ -9,7 +9,81 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="t1"
+        android:text="날씨"
         android:textSize="60sp"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:weightSum="7"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="월"
+            android:textSize="32sp"
+            android:gravity="center"
+            android:background="#66FF0000"
+            android:textColor="#FF000000"
+            android:layout_weight="1"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="화"
+            android:textSize="32sp"
+            android:gravity="center"
+            android:background="#66FF5500"
+            android:textColor="#FF000000"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="수"
+            android:textSize="32sp"
+            android:gravity="center"
+            android:textColor="#FF000000"
+            android:background="#66FFC800"
+            android:layout_weight="1"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="목"
+            android:textSize="32sp"
+            android:textColor="#FF000000"
+            android:background="#6651FF00"
+            android:gravity="center"
+            android:layout_weight="1"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="금"
+            android:textSize="32sp"
+            android:textColor="#FF000000"
+            android:background="#66006AFF"
+            android:gravity="center"
+            android:layout_weight="1"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="토"
+            android:textSize="32sp"
+            android:gravity="center"
+            android:background="#A8673AB7"
+            android:textColor="#000000"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="일"
+            android:gravity="center"
+            android:textSize="32sp"
+            android:background="#A89C27B0"
+            android:textColor="#FF000000"
+            android:layout_weight="1"/>
+    </LinearLayout>
 
 </LinearLayout>

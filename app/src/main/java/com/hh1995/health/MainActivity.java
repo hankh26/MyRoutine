@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
@@ -84,7 +85,10 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.youSearch:
                         //getSupportFragmentManager().beginTransaction().replace(R.id.container, youtubeFragment).addToBackStack(null).commit();
-
+                        Intent intent3=new Intent(Intent.ACTION_VIEW);
+                        intent3.setData(Uri.parse("https://www.youtube.com/"));
+                        intent3.setPackage("com.google.android.youtube");
+                        startActivity(intent3);	// do not edit
 
                 };
                     return false;
