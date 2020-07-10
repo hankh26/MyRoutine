@@ -6,6 +6,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
@@ -14,6 +15,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationMenu;
@@ -30,11 +32,9 @@ public class MainActivity extends AppCompatActivity {
 
     FrameLayout frameLayout;
 
-
-    FragmentTransaction transaction;
-
-    String weigh;
-
+    FragmentManager fragmentManager;
+    T1Fragment t1Fragment;
+    LinearLayout linearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
         frameLayout = findViewById(R.id.container);
 
 
-        T1Fragment t1Fragment;
 
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.botnav);
@@ -73,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (menuItem.getItemId()) {
                     case R.id.timer:
                         //getSupportFragmentManager().beginTransaction().replace(R.id.container, timerFragment).addToBackStack(null).commit();
-                        Intent intent=new Intent(MainActivity.this,TimerActivity.class);
+                        Intent intent=new Intent(MainActivity.this,TimeActivity.class);
                         startActivity(intent);
                         return true;
 
@@ -95,15 +94,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //========================
-        t1Fragment=new T1Fragment();
-
-        Intent intent= getIntent();
-        String weigh=intent.getStringExtra("weigh");
-        Bundle bundle=new Bundle();
-        bundle.putString("weigh",weigh);
-        t1Fragment.setArguments(bundle);
-        Toast.makeText(this, weigh, Toast.LENGTH_SHORT).show();
+//        //========================
+//        FragmentTransaction transaction =fragmentManager.beginTransaction();
+//        //T1Fragment t1Fragment=fragmentManager.findFragmentById(R.id.)
+//
+//        fragmentManager=getSupportFragmentManager();
+//        linearLayout=findViewById(R.id.ll);
+//
+//        Intent intent= getIntent();
+//        String weigh=intent.getStringExtra("weigh");
+//
+//        Bundle bundle=new Bundle();
+//        bundle.putString("weigh",weigh);
+//        t1Fragment.setArguments(bundle);
+//
+//        transaction.add(R.id.ll,t1Fragment);
+//
+//        transaction.addToBackStack(null);
+//        transaction.commit();
 
     }
 

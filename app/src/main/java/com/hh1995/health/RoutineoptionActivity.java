@@ -45,7 +45,7 @@ public class RoutineoptionActivity extends AppCompatActivity {
             }
         });
         AlertDialog dialog=builder.create();
-        dialog.setCancelable(false);
+        dialog.setCancelable(true);
         dialog.show();
     }
 }

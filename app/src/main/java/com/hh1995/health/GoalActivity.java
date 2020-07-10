@@ -3,6 +3,8 @@ package com.hh1995.health;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
 import android.content.Intent;
@@ -44,6 +46,7 @@ public class GoalActivity extends AppCompatActivity {
 
     T1Fragment t1Fragment;
 
+    FragmentManager fragmentManager;
 
 
     @Override
@@ -83,36 +86,20 @@ public class GoalActivity extends AppCompatActivity {
                 String legMuscle=etlegMuscle.getText().toString();
                 String basal=etbasal.getText().toString();
 
-//                t1Fragment=new T1Fragment();
-//                Intent intent=new Intent(GoalActivity.this,MainActivity.class);
-//                intent.putExtra("weigh",weigh);
-//                startActivity(intent);
-//                finish();
+                Intent intent=getIntent();
+                intent.putExtra("weigh",weigh);
+                intent.putExtra("tall",tall);
+                intent.putExtra("fatRate",fatRate);
+                intent.putExtra("fatWei",fatWei);
+                intent.putExtra("muscle",muscle);
+                intent.putExtra("visceralFat",visceralFat);
+                intent.putExtra("legMuscle",legMuscle);
+                intent.putExtra("basal",basal);
 
+                setResult(RESULT_OK,intent);
+                Toast.makeText(GoalActivity.this, weigh+"", Toast.LENGTH_SHORT).show();
+                finish();
 
-//                FirebaseDatabase db=FirebaseDatabase.getInstance();
-//                DatabaseReference rootRef=db.getReference();
-//
-//                Goal goal=new Goal(weigh,tall,fatRate,fatWei,muscle,visceralFat,legMuscle,basal);
-//                DatabaseReference goalRef=rootRef.child("goal");
-//                goalRef.push().setValue(goal);
-//
-//
-//
-//                goalRef.addValueEventListener(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                        for (DataSnapshot snapshot:dataSnapshot.getChildren()){
-//                            Goal goal=snapshot.getValue(Goal.class);
-//
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//                    }
-//                });
 
             }
         });

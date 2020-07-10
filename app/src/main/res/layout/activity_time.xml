@@ -24,29 +24,51 @@
         android:layout_gravity="right"/>
 
 
-<LinearLayout
+<RelativeLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:layout_marginTop="72dp"
-    android:orientation="horizontal">
+    android:layout_marginTop="72dp">
     <TextView
+        android:id="@+id/tttttvvv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#FFFFFF"
         android:text="세트"
-        android:layout_marginRight="32dp"
+        android:layout_marginRight="50dp"
+        android:layout_toLeftOf="@id/tv_set"
         android:textColor="#777777"
+        android:layout_alignBottom="@id/tv_set"
         android:textSize="32sp" />
+
     <TextView
         android:id="@+id/tv_set"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_toLeftOf="@id/setBtn"
+        android:layout_marginRight="70dp"
         android:background="#FFFFFF"
         android:text="0"
         android:textColor="#777777"
         android:textSize="40sp" />
-</LinearLayout>
+
+    <Button
+        android:onClick="clickReset"
+        android:id="@+id/setBtn"
+        android:layout_alignParentRight="true"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="리셋"/>
+</RelativeLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_gravity="right"
+        android:onClick="clickop"
+        android:text="타이머설정"/>
 
     <TextView
         android:id="@+id/time_out"
@@ -56,37 +78,31 @@
         android:textSize="40sp"
         android:background="#FFFFFF"
         android:textColor="#777777"
-        android:layout_marginTop="120dp"
         android:text="00:00" />
 
-    <EditText
-        android:id="@+id/etm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+<FrameLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="50dp"
+    android:layout_gravity="center">
 
-    <EditText
-        android:id="@+id/ets"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="number" />
+    <Button
+        android:id="@+id/btn_cancel"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:onClick="myOnClick"
+        android:visibility="invisible"
+        android:text="취소"/>
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
         <Button
             android:id="@+id/btn_tstart"
-            android:layout_width="0px"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
             android:onClick="myOnClick"
             android:text="시작" />
-        <Button
-            android:id="@+id/btn_cancel"
-            android:layout_width="0px"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="myOnClick"
-            android:text="취소" />
-    </LinearLayout>
+
+
+        </FrameLayout>
 
 </LinearLayout>

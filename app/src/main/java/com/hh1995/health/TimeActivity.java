@@ -2,13 +2,18 @@ package com.hh1995.health;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
+import android.text.InputFilter;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,15 +31,25 @@ public class TimeActivity extends AppCompatActivity {
 
     CountDownTimer timer;
 
+   String etSecondNum="";
+   String etMinNum="";
+
+    String text="";
+    String text1="";
+    String text2="";
+
     final static int Init=0;
     final static int Run=1;
     final static int Pause=2;
 
-    int cur_Status=Init;
-    long BaseTime;
-    long PauseTime;
+    int cur_Status=Run;
 
-    String timel="";
+    long test;
+
+    int a;
+
+
+    int num=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,20 +59,44 @@ public class TimeActivity extends AppCompatActivity {
         btnCancel = findViewById(R.id.btn_cancel);
         timeOut = findViewById(R.id.time_out);
         tvSet = findViewById(R.id.tv_set);
-        etM=findViewById(R.id.etm);
-        etS=findViewById(R.id.ets);
 
-        //timel=etM.getText().toString()+etS.getText().toString();
-        countDown("0010");
+
+    }
+
+    public void clickStop(View view) {
+        Intent intent=new Intent(TimeActivity.this,TimerActivity.class);
+        startActivity(intent);
+        finish();
 
     }
 
 
-    public void countDown(final String time) {
-        long conversionTime = 0;
+    public void myOnClick(View view) throws InterruptedException {
+        switch (view.getId()) {
+            case R.id.btn_tstart:
+                text = timeOut.getText().toString();
+                text1 = text.replace(":", "");
+                countDowmTimer(text1);
+                timer.start();
+                btnStart.setVisibility(View.INVISIBLE);
+                btnCancel.setVisibility(View.VISIBLE);
+                break;
 
-        String getMin = time.substring(0, 2);
-        String getSecond = time.substring(2, 4);
+            case R.id.btn_cancel:
+                timer.cancel();
+                timeOut.setText(text);
+                btnStart.setVisibility(View.VISIBLE);
+                btnCancel.setVisibility(View.INVISIBLE);
+                break;
+
+        }
+
+    }
+
+    public void countDowmTimer(final String time){
+        long ctime=0;
+        String getMin=time.substring(0,2);
+        String getSecond=time.substring(2,4);
 
         if (getMin.substring(0, 1) == "0") {
             getMin = getMin.substring(1, 2);
@@ -67,18 +106,17 @@ public class TimeActivity extends AppCompatActivity {
             getSecond = getSecond.substring(1, 2);
         }
 
-        conversionTime = Long.valueOf(getMin) * 60 * 1000 + Long.valueOf(getSecond) * 1000;
-
-        timer = new CountDownTimer(conversionTime, 1000) {
+        ctime=Long.valueOf(getMin)*60*1000+Long.valueOf(getSecond)*1000;
+        timer=new CountDownTimer(ctime,1000) {
+            @Override
             public void onTick(long millisUntilFinished) {
-
-                long getMin = millisUntilFinished - (millisUntilFinished / (60 * 60 * 1000));
+                long getMin = millisUntilFinished - (millisUntilFinished / (60 * 60 * 1000)) ;
+                test=getMin;
                 String min = String.valueOf(getMin / (60 * 1000));
 
                 String second = String.valueOf((getMin % (60 * 1000)) / 1000);
 
                 String millis = String.valueOf((getMin % (60 * 1000)) % 1000);
-
 
                 if (min.length() == 1) {
                     min = "0" + min;
@@ -87,52 +125,70 @@ public class TimeActivity extends AppCompatActivity {
                 if (second.length() == 1) {
                     second = "0" + second;
                 }
-
                 timeOut.setText(min + ":" + second);
+
             }
 
+            @Override
             public void onFinish() {
+                timeOut.setText(text);
 
-                timeOut.setText("00:10");
+                num++;
+                tvSet.setText(num+"");
+                btnCancel.setVisibility(View.INVISIBLE);
             }
         };
 
+
     }
-        public void myOnClick (View view) throws InterruptedException {
-            switch (view.getId()) {
-                case R.id.btn_tstart:
-                    switch (cur_Status){
-                        case Init:
-                        timer.start();
-                        btnStart.setText("일시정지");
-                        cur_Status=Run;
-                        break;
-                        case Run:
-                            btnStart.setText("시작");
-                            timer.cancel();
-                            cur_Status=Pause;
-                            Toast.makeText(this, timeOut.getText().toString(), Toast.LENGTH_SHORT).show();
-                            break;
-                        case Pause:
-                            String now=timeOut.getText().toString();
-                            now=now.replace(":","");
-                            countDown(now);
-                            timer.start();
-                            cur_Status=Run;
-                            break;
-                    }
 
-                    break;
-                case R.id.btn_cancel:
-                    Toast.makeText(this, "n"+etM.getText().toString()+etS.getText().toString()+"n", Toast.LENGTH_SHORT).show();
+    public void clickop(View view) {
+
+        AlertDialog.Builder builder= new AlertDialog.Builder(this);
+
+        builder.setTitle("시간설정");
+
+        LayoutInflater inflater=this.getLayoutInflater();
+        View v=inflater.inflate(R.layout.timer_list,null);
+        etM = findViewById(R.id.etm);
+        etS = findViewById(R.id.ets);
+
+        builder.setView(v);
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                etM = (EditText)((AlertDialog)dialog).findViewById(R.id.etm);
+                etS = (EditText)((AlertDialog)dialog).findViewById(R.id.ets);
+                etMinNum=etM.getText().toString();
+                etSecondNum=etS.getText().toString();
+                if (etMinNum.length() == 1) {
+                    etMinNum = "0" + etMinNum;
+                }
+                if (etMinNum.length()==0){
+                    etMinNum = "00" + etMinNum;
+                }
+
+                if (etSecondNum.length() == 1) {
+                    etSecondNum = "0" + etSecondNum;
+                }
+                if (etSecondNum.length() == 0) {
+                    etSecondNum = "00" + etSecondNum;
+                }
+
+                timeOut.setText(etMinNum+":"+etSecondNum);
+
             }
+        });
+        AlertDialog dialog=builder.create();
+        dialog.setCancelable(true);
+        dialog.show();
 
-        }
 
-    public void clickStop(View view) {
-        Intent intent=new Intent(TimeActivity.this,TimerActivity.class);
-        startActivity(intent);
-        finish();
+    }
+
+    public void clickReset(View view) {
+        num=0;
+        tvSet.setText(num+"");
     }
 }
-
