@@ -15,13 +15,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ItemAdater extends RecyclerView.Adapter {
     ArrayList<Item> items;
     Context context;
 
-    String Bweigh="null";
+    //String Bweigh="null";
 
 
     public ItemAdater(ArrayList<Item> items, Context context) {
@@ -43,14 +45,19 @@ public class ItemAdater extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         VH vh=(VH)holder;
         Item item=items.get(position);
+        long now=System.currentTimeMillis();
+        Date date=new Date(now);
 
-        vh.date.setText(item.date);
-        vh.weight.setText(item.weigh);
-        vh.fat.setText(item.fat);
-        vh.muscle.setText(item.muscle);
-        vh.tvweight.setText(Bweigh);
-        vh.tvfat.setText(item.tvFat);
-        vh.tvmuscle.setText(item.tvMuscle);
+        SimpleDateFormat simpleDateFormat= new SimpleDateFormat("yyyy-MM-dd");
+        String time= simpleDateFormat.format(date);
+
+        vh.date.setText(time);
+//        vh.weight.setText(item.weigh);
+//        vh.fat.setText(item.fat);
+//        vh.muscle.setText(item.muscle);
+        vh.tvweight.setText(item.tvWeigh+"kg");
+        vh.tvfat.setText(item.tvFat+"%");
+        vh.tvmuscle.setText(item.tvMuscle+"kg");
         Glide.with(context).load(item.img).into(vh.iv);
 
 
@@ -84,12 +91,6 @@ public class ItemAdater extends RecyclerView.Adapter {
             tvweight=itemView.findViewById(R.id.tv_weigh);
             tvfat=itemView.findViewById(R.id.tv_fat);
             tvmuscle=itemView.findViewById(R.id.tv_muscle);
-
-
-
-
         }
     }
-
-
 }
