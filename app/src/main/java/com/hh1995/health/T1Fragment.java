@@ -19,7 +19,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -31,16 +33,10 @@ public class T1Fragment extends Fragment {
     FloatingActionButton myBtn;
 
     FloatingActionButton goalBtn;
-    //final int goalRequestCode=100;
-    int myRequestCode=101;
 
     TextView tvWei;
     TextView tvFat;
     TextView tvMus;
-
-    Context context;
-
-    Bundle weigh;
 
 
     @Nullable
@@ -48,11 +44,9 @@ public class T1Fragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v=inflater.inflate(R.layout.fragment_1,container,false);
 
-
-
-        items.add(new Item(R.drawable.bazzi,"20200701","체중","체지방률","근육량","75kg","11%","38kg"));
-        items.add(new Item(R.drawable.dao,"20200701","체중","체지방률","근육량","74kg","10%","38kg"));
-        items.add(new Item(R.drawable.dizni,"20200701","체중","체지방률","근육량","73kg","9%","38kg"));
+//        items.add(new Item(R.drawable.bazzi,"20200701","75kg","11%","38kg"));
+//        items.add(new Item(R.drawable.dao,"20200701","74kg","10%","38kg"));
+//        items.add(new Item(R.drawable.dizni,"20200701","73kg","9%","38kg"));
 
         tvFat=v.findViewById(R.id.tv_fat);
         tvWei=v.findViewById(R.id.tv_weigh);
@@ -75,11 +69,12 @@ public class T1Fragment extends Fragment {
                 startActivityForResult(intent,100);
             }
         });
-
-
         recyclerView=v.findViewById(R.id.recycler);
         adater=new ItemAdater(items,getContext());
         recyclerView.setAdapter(adater);
+
+
+
 
 
 
@@ -104,11 +99,23 @@ public class T1Fragment extends Fragment {
                     tvWei.setText(weigh+"kg");
                     tvMus.setText(muscle+"%");
                     tvFat.setText(fatRate+"kg");
+                }
+                break;
+            case 101:
+                if (resultCode==RESULT_OK){
+                    String weigh=data.getStringExtra("weigh");
+                    String tall=data.getStringExtra("tall");
+                    String fatRate=data.getStringExtra("fatRate");
+                    String fatWei=data.getStringExtra("fatWei");
+                    String muscle=data.getStringExtra("muscle");
+                    String visceralFat=data.getStringExtra("visceralFat");
+                    String legMuscle=data.getStringExtra("legMuscle");
+                    String basal=data.getStringExtra("basal");
+                    items.add(0,new Item(R.drawable.dizni,weigh,fatRate,muscle));
+                    adater.notifyItemInserted(0);
 
                 }
-
                 break;
         }
     }
-
 }

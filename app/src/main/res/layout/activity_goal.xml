@@ -92,7 +92,6 @@
                 android:layout_height="wrap_content"
                 android:text="체지방률(%)"
                 android:textSize="16sp"
-                android:maxLength="2"
                 android:textStyle="bold"
                 android:layout_margin="14dp"
                 android:textColor="#FF000000"/>

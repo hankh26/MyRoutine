@@ -4,10 +4,16 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,8 +22,21 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
 public class T2Fragment extends Fragment {
     TextView weather;
+    Context context;
+
     TextView mon;
     TextView tue;
     TextView wed;
@@ -34,10 +53,11 @@ public class T2Fragment extends Fragment {
     TextView tvsat;
     TextView tvsun;
 
-    Context context;
-
     TextView schTv;
     EditText schEt;
+
+
+    Button reset;
 
 
     
@@ -45,8 +65,7 @@ public class T2Fragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v=inflater.inflate(R.layout.fragment_2,container,false);
-        
-        weather=v.findViewById(R.id.weather);
+
         mon=v.findViewById(R.id.mon);
         tue=v.findViewById(R.id.tue);
         wed=v.findViewById(R.id.wed);
@@ -62,7 +81,17 @@ public class T2Fragment extends Fragment {
         tvfri=v.findViewById(R.id.tv_fri);
         tvsat=v.findViewById(R.id.tv_sat);
         tvsun=v.findViewById(R.id.tv_sun);
-        
+//
+//
+//        Intent intent=new Intent(getContext(),MainActivity.class);
+//        startActivityForResult(intent,50);
+
+
+
+
+
+
+
         mon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -233,12 +262,17 @@ public class T2Fragment extends Fragment {
                 dialog.show();
             }
         });
-
-
-        
-
-
-
         return v;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode){
+            case 50:
+                String str=data.getStringExtra("weigh");
+                weather.setText(str);
+                break;
+        }
     }
 }

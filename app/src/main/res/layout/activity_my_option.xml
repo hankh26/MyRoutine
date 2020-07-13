@@ -44,6 +44,7 @@
             android:layout_margin="14dp"
             android:textColor="#FF000000"/>
             <TextView
+                android:id="@+id/optv"
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -74,7 +75,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:hint="ex)75"
+        android:textAlignment="center"
         android:layout_marginRight="16dp"
+        android:maxLength="3"
         android:maxLines="1"
         android:inputType="number"/>
 
@@ -100,6 +103,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:hint="ex)177"
+            android:textAlignment="center"
+            android:maxLength="3"
             android:maxLines="1"
             android:layout_marginRight="16dp"
             android:inputType="number"/>
@@ -125,6 +130,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:hint="ex)15"
+            android:maxLength="2"
+            android:textAlignment="center"
             android:maxLines="1"
             android:layout_marginRight="16dp"
             android:inputType="number"/>
@@ -150,6 +157,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:hint="ex)10"
+            android:maxLength="2"
+            android:textAlignment="center"
             android:maxLines="1"
             android:layout_marginRight="16dp"
             android:inputType="number"/>
@@ -176,6 +185,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:hint="ex)30"
+            android:maxLength="2"
+            android:textAlignment="center"
             android:maxLines="1"
             android:layout_marginRight="16dp"
             android:inputType="number"/>
@@ -201,6 +212,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:hint="ex)1~10"
+            android:maxLength="2"
+            android:textAlignment="center"
             android:maxLines="1"
             android:layout_marginRight="16dp"
             android:inputType="number"/>
@@ -226,6 +239,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:hint="ex)15"
+            android:textAlignment="center"
+            android:maxLength="2"
             android:maxLines="1"
             android:layout_marginRight="16dp"
             android:inputType="number"/>
@@ -252,6 +267,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:hint="ex)1700"
+            android:maxLength="4"
+            android:textAlignment="center"
             android:maxLines="1"
             android:layout_marginRight="16dp"
             android:inputType="number"/>
@@ -266,6 +283,7 @@
             android:gravity="center"
             android:orientation="horizontal">
             <ImageView
+                android:id="@+id/iv"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"

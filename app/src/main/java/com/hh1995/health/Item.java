@@ -2,11 +2,7 @@ package com.hh1995.health;
 
 public class Item {
     int img;
-    String date;
-
-    String weigh;
-    String fat;
-    String muscle;
+    //String date;
 
     String tvWeigh;
     String tvFat;
@@ -15,12 +11,9 @@ public class Item {
     public Item() {
     }
 
-    public Item(int img, String date, String weigh, String fat, String muscle, String tvWeigh, String tvFat, String tvMuscle) {
+    public Item(int img, String tvWeigh, String tvFat, String tvMuscle) {
         this.img = img;
-        this.date = date;
-        this.weigh = weigh;
-        this.fat = fat;
-        this.muscle = muscle;
+        //this.date = date;
         this.tvWeigh = tvWeigh;
         this.tvFat = tvFat;
         this.tvMuscle = tvMuscle;

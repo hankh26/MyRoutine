@@ -63,20 +63,18 @@ public class GoalActivity extends AppCompatActivity {
         etbasal=findViewById(R.id.et_energy);
 
         iv=findViewById(R.id.goalIv);
-
-        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
-            if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_DENIED){
-                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},100);
-
-            }
-        }
+//
+//        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
+//            if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_DENIED){
+//                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},100);
+//
+//            }
+//        }
 
         btn=findViewById(R.id.btn);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 String weigh=etweigh.getText().toString();
                 String tall=ettall.getText().toString();
                 String fatRate=etfatRate.getText().toString();
@@ -99,28 +97,26 @@ public class GoalActivity extends AppCompatActivity {
                 setResult(RESULT_OK,intent);
                 Toast.makeText(GoalActivity.this, weigh+"", Toast.LENGTH_SHORT).show();
                 finish();
-
-
             }
         });
 
 
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode){
-            case 100:
-                if (grantResults[0] ==PackageManager.PERMISSION_DENIED) {
-                    Toast.makeText(this, "앱을 사용할수 없습니다", Toast.LENGTH_SHORT).show();
-                    finish();
-
-                }
-                break;
-        }
-
-    }
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        switch (requestCode){
+//            case 100:
+//                if (grantResults[0] ==PackageManager.PERMISSION_DENIED) {
+//                    Toast.makeText(this, "앱을 사용할수 없습니다", Toast.LENGTH_SHORT).show();
+//                    finish();
+//
+//                }
+//                break;
+//        }
+//
+//    }
 
 
     public void clickImg(View view) {
